@@ -120,7 +120,8 @@ const BookingPage = () => {
     
     // Generate 4 weeks of dates
     for (let i = 0; i < 28; i++) {
-      dates.push(addDays(startDate, i));
+      const date = addDays(startDate, i);
+      dates.push(date);
     }
     
     return dates;
@@ -339,8 +340,10 @@ const BookingPage = () => {
                     key={index}
                     className={`flex flex-col items-center justify-center p-2 rounded-lg w-14 transition-all ${isSelected ? 'bg-primary-600 text-white scale-110' : isToday ? 'bg-gray-700 text-primary-300' : 'hover:bg-gray-700 text-gray-300'}`}
                     onClick={() => {
-                      setSelectedDate(date);
-                      setCalendarMonth(date);
+                      // Create a new Date object to avoid reference issues
+                      const newSelectedDate = new Date(date);
+                      setSelectedDate(newSelectedDate);
+                      setCalendarMonth(newSelectedDate);
                     }}
                   >
                     <span className="text-xs font-medium mb-1">{dayName}</span>
@@ -373,8 +376,10 @@ const BookingPage = () => {
                     key={index}
                     className={`p-2 rounded-md text-center ${isSelected ? 'bg-primary-600 text-white' : isToday ? 'bg-gray-700 text-primary-300' : 'hover:bg-gray-700 text-gray-300'}`}
                     onClick={() => {
-                      setSelectedDate(date);
-                      setCalendarMonth(date);
+                      // Create a new Date object to avoid reference issues
+                      const newSelectedDate = new Date(date);
+                      setSelectedDate(newSelectedDate);
+                      setCalendarMonth(newSelectedDate);
                     }}
                   >
                     <span className="text-sm">{format(date, 'd')}</span>

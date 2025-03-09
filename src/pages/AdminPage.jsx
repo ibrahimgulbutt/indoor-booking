@@ -115,6 +115,8 @@ const AdminPage = () => {
   const [activeTab, setActiveTab] = useState('bookings');
   const [dateRange, setDateRange] = useState('month');
   const [peakHours, setPeakHours] = useState([]);
+  const [editingBooking, setEditingBooking] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   // Cleanup function for charts
   useEffect(() => {
@@ -412,8 +414,9 @@ const AdminPage = () => {
                       </td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-300">
                         <BookingStatusIndicator status={booking.status} />
-                        {/* Mobile only date display */}
+                        {/* Mobile only date and time display */}
                         <div className="text-xs text-gray-400 mt-1 sm:hidden">{booking.date}</div>
+                        <div className="text-xs text-gray-400 mt-1 sm:hidden">{booking.time}</div>
                       </td>
                       <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-300 hidden sm:table-cell">
                         <div>PKR {booking.amount}</div>
@@ -435,6 +438,15 @@ const AdminPage = () => {
                           >
                             Cancel
                           </button>
+                          <button 
+                            onClick={() => {
+                              setEditingBooking(booking);
+                              setShowEditModal(true);
+                            }}
+                            className="text-blue-400 hover:text-blue-300 text-xs sm:text-sm px-2 py-1 sm:px-0 sm:py-0 bg-blue-900/30 sm:bg-transparent rounded sm:rounded-none"
+                          >
+                            Edit
+                          </button>
                         </div>
                         {/* Mobile only payment display */}
                         <div className="text-xs text-gray-400 mt-1 sm:hidden">PKR {booking.amount}</div>
@@ -445,6 +457,123 @@ const AdminPage = () => {
               </table>
             </div>
           </div>
+
+          {/* Edit Booking Modal */}
+          {showEditModal && editingBooking && (
+            <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50">
+              <div className="bg-gray-800 rounded-lg max-w-lg w-full p-6 shadow-xl">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-xl font-semibold text-white">Edit Booking</h3>
+                  <button 
+                    onClick={() => {
+                      setShowEditModal(false);
+                      setEditingBooking(null);
+                    }}
+                    className="text-gray-400 hover:text-white"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  {/* Court Selection */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Court</label>
+                    <select
+                      value={editingBooking.fieldName}
+                      onChange={(e) => setEditingBooking({...editingBooking, fieldName: e.target.value})}
+                      className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    >
+                      {venues.map(venue => (
+                        <option key={venue.id} value={venue.name}>{venue.name}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  {/* Date Selection */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Date</label>
+                    <input
+                      type="date"
+                      value={editingBooking.date}
+                      onChange={(e) => setEditingBooking({...editingBooking, date: e.target.value})}
+                      className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    />
+                  </div>
+
+                  {/* Time Selection */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Time</label>
+                    <select
+                      value={editingBooking.time}
+                      onChange={(e) => setEditingBooking({...editingBooking, time: e.target.value})}
+                      className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    >
+                      <option value="8:00 - 9:00">8:00 - 9:00</option>
+                      <option value="9:00 - 10:00">9:00 - 10:00</option>
+                      <option value="10:00 - 11:00">10:00 - 11:00</option>
+                      <option value="11:00 - 12:00">11:00 - 12:00</option>
+                      <option value="12:00 - 13:00">12:00 - 13:00</option>
+                      <option value="13:00 - 14:00">13:00 - 14:00</option>
+                      <option value="14:00 - 15:00">14:00 - 15:00</option>
+                      <option value="15:00 - 16:00">15:00 - 16:00</option>
+                      <option value="16:00 - 17:00">16:00 - 17:00</option>
+                      <option value="17:00 - 18:00">17:00 - 18:00</option>
+                      <option value="18:00 - 19:00">18:00 - 19:00</option>
+                      <option value="19:00 - 20:00">19:00 - 20:00</option>
+                    </select>
+                  </div>
+
+                  {/* Payment Status */}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-1">Payment Status</label>
+                    <select
+                      value={editingBooking.paymentStatus}
+                      onChange={(e) => setEditingBooking({...editingBooking, paymentStatus: e.target.value})}
+                      className="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    >
+                      <option value="Advance Paid">Advance Paid</option>
+                      <option value="Fully Paid">Fully Paid</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Refunded">Refunded</option>
+                    </select>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row sm:justify-end mt-6 sm:space-x-3 space-y-2 sm:space-y-0">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowEditModal(false);
+                        setEditingBooking(null);
+                      }}
+                      className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-md w-full sm:w-auto"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        // Update the booking in the bookings array
+                        setBookings(bookings.map(booking => 
+                          booking.id === editingBooking.id ? editingBooking : booking
+                        ));
+                        setShowEditModal(false);
+                        setEditingBooking(null);
+                      }}
+                      className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md flex items-center justify-center sm:justify-start gap-2 w-full sm:w-auto"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                      </svg>
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </>
       ) : activeTab === 'analytics' ? (
         <>
