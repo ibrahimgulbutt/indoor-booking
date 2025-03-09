@@ -3,6 +3,7 @@ import { format, parseISO, startOfMonth, endOfMonth, eachDayOfInterval } from 'd
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import { FaUsers, FaMoneyBillWave, FaCalendarCheck, FaChartLine } from 'react-icons/fa';
 import BookingStatusIndicator from '../components/BookingStatusIndicator';
+import AdminControlPanel from '../components/AdminControlPanel';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -330,6 +331,12 @@ const AdminPage = () => {
           >
             Business Analytics
           </button>
+          <button
+            className={`${activeTab === 'settings' ? 'border-primary-500 text-primary-400' : 'border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+            onClick={() => setActiveTab('settings')}
+          >
+            Settings & Controls
+          </button>
         </nav>
       </div>
 
@@ -432,7 +439,7 @@ const AdminPage = () => {
             </div>
           </div>
         </>
-      ) : (
+      ) : activeTab === 'analytics' ? (
         <>
           {/* Analytics View */}
           <div className="mb-6 flex justify-end">
@@ -597,6 +604,9 @@ const AdminPage = () => {
             </div>
           </div>
         </>
+      ) : (
+        /* Settings & Controls Tab */
+        <AdminControlPanel />
       )}
     </div>
   );

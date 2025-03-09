@@ -165,6 +165,116 @@ export const venueApi = {
       throw error.response?.data || { success: false, error: { message: 'Network error' } };
     }
   },
+
+  // Create a new venue
+  createVenue: async (venueData) => {
+    try {
+      const response = await API.post('/venues', venueData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Update venue
+  updateVenue: async (id, venueData) => {
+    try {
+      const response = await API.put(`/venues/${id}`, venueData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Delete venue
+  deleteVenue: async (id) => {
+    try {
+      const response = await API.delete(`/venues/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Upload venue image
+  uploadVenueImage: async (id, imageFile) => {
+    try {
+      const formData = new FormData();
+      formData.append('image', imageFile);
+      
+      const response = await API.post(`/venues/${id}/images`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+};
+
+// Discount services
+export const discountApi = {
+  // Get all discounts
+  getAllDiscounts: async () => {
+    try {
+      const response = await API.get('/discounts');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Create a new discount
+  createDiscount: async (discountData) => {
+    try {
+      const response = await API.post('/discounts', discountData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Update discount
+  updateDiscount: async (id, discountData) => {
+    try {
+      const response = await API.put(`/discounts/${id}`, discountData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Delete discount
+  deleteDiscount: async (id) => {
+    try {
+      const response = await API.delete(`/discounts/${id}`);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Toggle discount status
+  toggleDiscountStatus: async (id) => {
+    try {
+      const response = await API.patch(`/discounts/${id}/toggle`);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
+
+  // Validate discount code
+  validateDiscountCode: async (code) => {
+    try {
+      const response = await API.get(`/discounts/validate/${code}`);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { success: false, error: { message: 'Network error' } };
+    }
+  },
 };
 
 export default API;
