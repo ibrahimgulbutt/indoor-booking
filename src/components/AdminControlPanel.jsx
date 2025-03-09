@@ -366,8 +366,8 @@ const AdminControlPanel = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-1">Upload Image</label>
-                <div className="flex items-center space-x-4">
-                  <label className="cursor-pointer bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+                  <label className="cursor-pointer bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-md flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-start mb-2 sm:mb-0">
                     <FaImage />
                     <span>Select Image</span>
                     <input
@@ -395,7 +395,7 @@ const AdminControlPanel = () => {
                 <p className="text-xs text-gray-400 mt-1">Supported formats: JPG, PNG, WebP. Max size: 5MB</p>
               </div>
 
-              <div className="flex justify-end mt-6 space-x-3">
+              <div className="flex flex-col sm:flex-row sm:justify-end mt-6 sm:space-x-3 space-y-2 sm:space-y-0">
                 <button
                   type="button"
                   onClick={() => {
@@ -404,14 +404,14 @@ const AdminControlPanel = () => {
                     setSelectedImage(null);
                     setPreviewImage('');
                   }}
-                  className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-md"
+                  className="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded-md w-full sm:w-auto"
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   onClick={saveVenueChanges}
-                  className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md flex items-center gap-2"
+                  className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md flex items-center justify-center sm:justify-start gap-2 w-full sm:w-auto"
                 >
                   <FaSave /> {editingVenue.id ? 'Update Court' : 'Add Court'}
                 </button>
@@ -600,23 +600,25 @@ const AdminControlPanel = () => {
   return (
     <div className="bg-gray-900 shadow-md rounded-lg overflow-hidden">
       {/* Tabs */}
-      <div className="flex border-b border-gray-800">
+      <div className="flex border-b border-gray-800 overflow-x-auto">
         <button
-          className={`px-4 py-3 text-sm font-medium ${activeTab === 'courts' ? 'text-white border-b-2 border-primary-500' : 'text-gray-400 hover:text-gray-300'}`}
+          className={`px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium whitespace-nowrap flex-1 sm:flex-none text-center sm:text-left ${activeTab === 'courts' ? 'text-white border-b-2 border-primary-500' : 'text-gray-400 hover:text-gray-300'}`}
           onClick={() => setActiveTab('courts')}
         >
-          Courts Management
+          <span className="block sm:hidden">Courts</span>
+          <span className="hidden sm:block">Courts Management</span>
         </button>
         <button
-          className={`px-4 py-3 text-sm font-medium ${activeTab === 'discounts' ? 'text-white border-b-2 border-primary-500' : 'text-gray-400 hover:text-gray-300'}`}
+          className={`px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium whitespace-nowrap flex-1 sm:flex-none text-center sm:text-left ${activeTab === 'discounts' ? 'text-white border-b-2 border-primary-500' : 'text-gray-400 hover:text-gray-300'}`}
           onClick={() => setActiveTab('discounts')}
         >
-          Discounts & Promotions
+          <span className="block sm:hidden">Discounts</span>
+          <span className="hidden sm:block">Discounts & Promotions</span>
         </button>
       </div>
 
       {/* Tab Content */}
-      <div className="p-6">
+      <div className="p-3 sm:p-6">
         {activeTab === 'courts' ? renderCourtsTab() : renderDiscountsTab()}
       </div>
     </div>

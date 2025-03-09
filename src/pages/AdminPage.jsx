@@ -243,99 +243,102 @@ const AdminPage = () => {
   const statusData = prepareStatusData();
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
+    <div className="max-w-7xl mx-auto py-4 sm:py-8 px-3 sm:px-6 lg:px-8">
+      <div className="text-center mb-4 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">
           Admin Dashboard
         </h1>
-        <p className="mt-4 text-xl text-gray-400">
+        <p className="mt-2 sm:mt-4 text-base sm:text-xl text-gray-400">
           Manage bookings and view business analytics
         </p>
       </div>
 
       {/* Analytics Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mb-6 sm:mb-8">
+        <div className="bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
           <div className="flex items-center">
-            <div className="p-3 rounded-full bg-primary-900 text-primary-300">
-              <FaCalendarCheck className="w-6 h-6" />
+            <div className="p-2 sm:p-3 rounded-full bg-primary-900 text-primary-300">
+              <FaCalendarCheck className="w-4 h-4 sm:w-6 sm:h-6" />
             </div>
-            <div className="ml-4">
-              <p className="text-gray-400 text-sm">Total Bookings</p>
-              <p className="text-white text-2xl font-bold">{totalBookings}</p>
+            <div className="ml-2 sm:ml-4">
+              <p className="text-gray-400 text-xs sm:text-sm">Total Bookings</p>
+              <p className="text-white text-lg sm:text-2xl font-bold">{totalBookings}</p>
             </div>
           </div>
-          <div className="mt-2 text-xs text-gray-400">
+          <div className="mt-1 sm:mt-2 text-xs text-gray-400">
             <span className="text-green-400">{confirmedBookings} confirmed</span>, {pendingBookings} pending
           </div>
         </div>
 
-        <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+        <div className="bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
           <div className="flex items-center">
-            <div className="p-3 rounded-full bg-green-900 text-green-300">
-              <FaMoneyBillWave className="w-6 h-6" />
+            <div className="p-2 sm:p-3 rounded-full bg-green-900 text-green-300">
+              <FaMoneyBillWave className="w-4 h-4 sm:w-6 sm:h-6" />
             </div>
-            <div className="ml-4">
-              <p className="text-gray-400 text-sm">Total Revenue</p>
-              <p className="text-white text-2xl font-bold">PKR {totalRevenue}</p>
+            <div className="ml-2 sm:ml-4">
+              <p className="text-gray-400 text-xs sm:text-sm">Total Revenue</p>
+              <p className="text-white text-lg sm:text-2xl font-bold">PKR {totalRevenue}</p>
             </div>
           </div>
-          <div className="mt-2 text-xs text-gray-400">
+          <div className="mt-1 sm:mt-2 text-xs text-gray-400">
             <span className="text-green-400">PKR {Math.round(totalRevenue / totalBookings)} avg</span> per booking
           </div>
         </div>
 
-        <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+        <div className="bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
           <div className="flex items-center">
-            <div className="p-3 rounded-full bg-blue-900 text-blue-300">
-              <FaUsers className="w-6 h-6" />
+            <div className="p-2 sm:p-3 rounded-full bg-blue-900 text-blue-300">
+              <FaUsers className="w-4 h-4 sm:w-6 sm:h-6" />
             </div>
-            <div className="ml-4">
-              <p className="text-gray-400 text-sm">Customers</p>
-              <p className="text-white text-2xl font-bold">{uniqueCustomers}</p>
+            <div className="ml-2 sm:ml-4">
+              <p className="text-gray-400 text-xs sm:text-sm">Customers</p>
+              <p className="text-white text-lg sm:text-2xl font-bold">{uniqueCustomers}</p>
             </div>
           </div>
-          <div className="mt-2 text-xs text-gray-400">
+          <div className="mt-1 sm:mt-2 text-xs text-gray-400">
             <span className="text-blue-400">{(totalBookings / uniqueCustomers).toFixed(1)}</span> bookings per customer
           </div>
         </div>
 
-        <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+        <div className="bg-gray-800 p-3 sm:p-4 rounded-lg shadow-md">
           <div className="flex items-center">
-            <div className="p-3 rounded-full bg-purple-900 text-purple-300">
-              <FaChartLine className="w-6 h-6" />
+            <div className="p-2 sm:p-3 rounded-full bg-purple-900 text-purple-300">
+              <FaChartLine className="w-4 h-4 sm:w-6 sm:h-6" />
             </div>
-            <div className="ml-4">
-              <p className="text-gray-400 text-sm">Conversion Rate</p>
-              <p className="text-white text-2xl font-bold">{Math.round((confirmedBookings / totalBookings) * 100)}%</p>
+            <div className="ml-2 sm:ml-4">
+              <p className="text-gray-400 text-xs sm:text-sm">Conversion Rate</p>
+              <p className="text-white text-lg sm:text-2xl font-bold">{Math.round((confirmedBookings / totalBookings) * 100)}%</p>
             </div>
           </div>
-          <div className="mt-2 text-xs text-gray-400">
+          <div className="mt-1 sm:mt-2 text-xs text-gray-400">
             <span className="text-purple-400">{confirmedBookings}</span> of {totalBookings} bookings confirmed
           </div>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-700 mb-6">
-        <nav className="-mb-px flex space-x-8">
+      <div className="border-b border-gray-700 mb-4 sm:mb-6">
+        <nav className="-mb-px flex justify-between sm:justify-start sm:space-x-8 overflow-x-auto">
           <button
-            className={`${activeTab === 'bookings' ? 'border-primary-500 text-primary-400' : 'border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+            className={`${activeTab === 'bookings' ? 'border-primary-500 text-primary-400' : 'border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300'} whitespace-nowrap py-2 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm flex-1 sm:flex-none`}
             onClick={() => setActiveTab('bookings')}
           >
-            Bookings Management
+            <span className="block sm:hidden">Bookings</span>
+            <span className="hidden sm:block">Bookings Management</span>
           </button>
           <button
-            className={`${activeTab === 'analytics' ? 'border-primary-500 text-primary-400' : 'border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+            className={`${activeTab === 'analytics' ? 'border-primary-500 text-primary-400' : 'border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300'} whitespace-nowrap py-2 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm flex-1 sm:flex-none`}
             onClick={() => setActiveTab('analytics')}
           >
-            Business Analytics
+            <span className="block sm:hidden">Analytics</span>
+            <span className="hidden sm:block">Business Analytics</span>
           </button>
           <button
-            className={`${activeTab === 'settings' ? 'border-primary-500 text-primary-400' : 'border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+            className={`${activeTab === 'settings' ? 'border-primary-500 text-primary-400' : 'border-transparent text-gray-400 hover:text-gray-300 hover:border-gray-300'} whitespace-nowrap py-2 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm flex-1 sm:flex-none`}
             onClick={() => setActiveTab('settings')}
           >
-            Settings & Controls
+            <span className="block sm:hidden">Settings</span>
+            <span className="hidden sm:block">Settings & Controls</span>
           </button>
         </nav>
       </div>
@@ -343,12 +346,12 @@ const AdminPage = () => {
       {activeTab === 'bookings' ? (
         <>
           {/* Filters and Search */}
-          <div className="mb-6 flex flex-col sm:flex-row gap-4 items-center justify-between">
-            <div className="flex gap-4 items-center">
+          <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-between">
+            <div className="flex gap-3 sm:gap-4 items-center w-full sm:w-auto">
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2"
+                className="bg-gray-700 border-gray-600 text-white rounded-md px-2 sm:px-3 py-1 sm:py-2 text-sm w-full sm:w-auto"
               >
                 <option value="all">All Statuses</option>
                 <option value="confirmed">Confirmed</option>
@@ -362,7 +365,7 @@ const AdminPage = () => {
                 placeholder="Search by name, venue or phone..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-gray-700 border-gray-600 text-white rounded-md px-3 py-2 w-full"
+                className="bg-gray-700 border-gray-600 text-white rounded-md px-2 sm:px-3 py-1 sm:py-2 w-full text-sm"
               />
             </div>
           </div>
@@ -373,22 +376,22 @@ const AdminPage = () => {
               <table className="min-w-full divide-y divide-gray-700">
                 <thead className="bg-gray-900">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       User
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Venue
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
                       Date & Time
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Status
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider hidden sm:table-cell">
                       Payment
                     </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    <th scope="col" className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
@@ -396,41 +399,45 @@ const AdminPage = () => {
                 <tbody className="bg-gray-800 divide-y divide-gray-700">
                   {filteredBookings.map((booking) => (
                     <tr key={booking.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-white">{booking.userName}</div>
-                        <div className="text-sm text-gray-400">{booking.phoneNumber}</div>
+                        <div className="text-xs sm:text-sm text-gray-400">{booking.phoneNumber}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-300">
                         {booking.fieldName}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-300 hidden sm:table-cell">
                         <div>{booking.date}</div>
                         <div className="text-gray-400">{booking.time}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-300">
                         <BookingStatusIndicator status={booking.status} />
+                        {/* Mobile only date display */}
+                        <div className="text-xs text-gray-400 mt-1 sm:hidden">{booking.date}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-300 hidden sm:table-cell">
                         <div>PKR {booking.amount}</div>
                         <div className="text-gray-400">{booking.paymentStatus}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                        <div className="flex gap-2">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-xs sm:text-sm text-gray-300">
+                        <div className="flex flex-col sm:flex-row gap-2">
                           <button 
                             onClick={() => handleStatusUpdate(booking.id, 'Confirmed')}
-                            className="text-green-400 hover:text-green-300"
+                            className="text-green-400 hover:text-green-300 text-xs sm:text-sm px-2 py-1 sm:px-0 sm:py-0 bg-green-900/30 sm:bg-transparent rounded sm:rounded-none"
                             disabled={booking.status === 'Confirmed'}
                           >
                             Confirm
                           </button>
                           <button 
                             onClick={() => handleStatusUpdate(booking.id, 'Cancelled')}
-                            className="text-red-400 hover:text-red-300"
+                            className="text-red-400 hover:text-red-300 text-xs sm:text-sm px-2 py-1 sm:px-0 sm:py-0 bg-red-900/30 sm:bg-transparent rounded sm:rounded-none"
                             disabled={booking.status === 'Cancelled'}
                           >
                             Cancel
                           </button>
                         </div>
+                        {/* Mobile only payment display */}
+                        <div className="text-xs text-gray-400 mt-1 sm:hidden">PKR {booking.amount}</div>
                       </td>
                     </tr>
                   ))}
@@ -461,9 +468,9 @@ const AdminPage = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Revenue Chart */}
-            <div className="bg-gray-800 p-6 rounded-lg shadow-md">
-              <h3 className="text-lg font-medium text-white mb-4">Revenue Trend</h3>
-              <div className="h-80">
+            <div className="bg-gray-800 p-3 sm:p-6 rounded-lg shadow-md">
+              <h3 className="text-lg font-medium text-white mb-2 sm:mb-4">Revenue Trend</h3>
+              <div className="h-60 sm:h-80">
                 <Line
                   data={{
                     labels: revenueData.dates,
@@ -481,6 +488,16 @@ const AdminPage = () => {
                   options={{
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                      legend: {
+                        labels: {
+                          boxWidth: window.innerWidth < 768 ? 10 : 40,
+                          font: {
+                            size: window.innerWidth < 768 ? 10 : 12
+                          }
+                        }
+                      }
+                    },
                     scales: {
                       y: {
                         beginAtZero: true,
@@ -489,6 +506,9 @@ const AdminPage = () => {
                         },
                         ticks: {
                           color: 'rgba(156, 163, 175, 1)',
+                          font: {
+                            size: window.innerWidth < 768 ? 8 : 12
+                          }
                         },
                       },
                       x: {
@@ -497,6 +517,11 @@ const AdminPage = () => {
                         },
                         ticks: {
                           color: 'rgba(156, 163, 175, 1)',
+                          font: {
+                            size: window.innerWidth < 768 ? 8 : 12
+                          },
+                          maxRotation: 45,
+                          minRotation: 45
                         },
                       },
                     },
